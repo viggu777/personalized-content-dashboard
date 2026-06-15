@@ -6,19 +6,14 @@ import { GlobalSearch } from "@/features/search";
 import { useTheme } from "@/hooks";
 
 interface HeaderProps {
-  /** Open the mobile sidebar drawer. */
   onMenuClick: () => void;
 }
 
-/**
- * Top header bar: mobile menu trigger, search, dark-mode toggle, and avatar.
- */
 export function Header({ onMenuClick }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-zinc-200 bg-white/80 px-4 backdrop-blur-md sm:px-6 dark:border-zinc-800 dark:bg-zinc-950/80">
-      {/* Mobile menu button */}
       <button
         type="button"
         onClick={onMenuClick}
@@ -28,12 +23,9 @@ export function Header({ onMenuClick }: HeaderProps) {
         <FiMenu className="h-5 w-5" />
       </button>
 
-      {/* Global search */}
       <GlobalSearch />
 
-      {/* Right controls */}
       <div className="ml-auto flex items-center gap-2 sm:gap-3">
-        {/* Dark mode toggle */}
         <button
           type="button"
           onClick={toggleTheme}
@@ -48,7 +40,6 @@ export function Header({ onMenuClick }: HeaderProps) {
           )}
         </button>
 
-        {/* User avatar */}
         <button
           type="button"
           aria-label="Account menu"

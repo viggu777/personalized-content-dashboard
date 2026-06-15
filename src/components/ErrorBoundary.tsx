@@ -7,7 +7,6 @@ import { RetryButton, StatusMessage } from "./StatusMessage";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
-  /** Custom fallback UI. Defaults to a retryable status message. */
   fallback?: ReactNode;
 }
 
@@ -15,10 +14,6 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-/**
- * Catches render-time errors in its subtree so one broken card or feed can't
- * blank the whole app. Resetting re-mounts the children.
- */
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
@@ -30,7 +25,6 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    // Surface to the console (and any attached monitoring) for debugging.
     console.error("ErrorBoundary caught an error:", error, info);
   }
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FiArrowLeft, FiCompass } from "react-icons/fi";
 
-/** Rendered for unmatched routes (404). */
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-zinc-50 px-6 text-center text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">

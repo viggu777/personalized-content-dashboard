@@ -2,10 +2,6 @@
 
 import { useEffect } from "react";
 
-/**
- * Last-resort boundary for errors thrown in the root layout itself. It must
- * render its own <html>/<body> because it replaces the entire document.
- */
 export default function GlobalError({
   error,
   reset,

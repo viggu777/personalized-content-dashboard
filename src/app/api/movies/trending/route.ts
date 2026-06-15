@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 import { fetchTrendingMovies, hasTmdbCredentials } from "../tmdb";
 
-/** GET /api/movies/trending — this year's top movies (rating ≥ 7) from TMDB. */
 export async function GET() {
   if (!hasTmdbCredentials()) {
     return NextResponse.json(

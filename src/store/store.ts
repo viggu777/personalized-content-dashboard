@@ -9,18 +9,10 @@ import feedOrderReducer from "@/features/personalized/feedOrderSlice";
 
 import { listenerMiddleware } from "./listenerMiddleware";
 
-/**
- * Configures and returns a fresh Redux store instance.
- *
- * A factory (rather than a singleton) keeps the store request-scoped, which is
- * the recommended pattern for the Next.js App Router / SSR.
- */
 export const makeStore = () =>
   configureStore({
     reducer: {
-      // RTK Query cache reducer.
       [api.reducerPath]: api.reducer,
-      // Feature slices.
       preferences: preferencesReducer,
       favorites: favoritesReducer,
       theme: themeReducer,
@@ -33,7 +25,6 @@ export const makeStore = () =>
         .concat(api.middleware),
   });
 
-// Inferred types from the store itself.
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];

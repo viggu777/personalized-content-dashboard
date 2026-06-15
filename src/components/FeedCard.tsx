@@ -18,7 +18,6 @@ import { cardMotion } from "@/utils/motion";
 
 import { FavoriteButton } from "./FavoriteButton";
 
-/** The content types the feed / favorites render. */
 export type FeedItem = NewsArticle | Movie | SocialPost | CommunityPost;
 
 export interface FeedCardProps {
@@ -32,7 +31,6 @@ const BADGES: Record<FeedItem["type"], { label: string; className: string }> = {
   community: { label: "Community", className: "bg-orange-600" },
 };
 
-/** Media region (16:9) with a graceful placeholder. */
 function Media({ src, fallback }: { src?: string; fallback: React.ReactNode }) {
   if (!src) {
     return (
@@ -52,7 +50,6 @@ function Media({ src, fallback }: { src?: string; fallback: React.ReactNode }) {
   );
 }
 
-/** Consistent shell shared by every feed card type. */
 function CardShell({
   item,
   media,
@@ -110,10 +107,6 @@ function CardShell({
   );
 }
 
-/**
- * One card design that adapts to news, movie, social, and community items so
- * the combined feed and favorites read consistently.
- */
 export function FeedCard({ item }: FeedCardProps) {
   switch (item.type) {
     case "news":

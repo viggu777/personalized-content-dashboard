@@ -13,10 +13,6 @@ export interface NewsCardProps {
   article: NewsArticle;
 }
 
-/**
- * Presentational card for a single news article: image, headline,
- * description, and a "Read more" link to the source.
- */
 export function NewsCard({ article }: NewsCardProps) {
   const { title, description, url, imageUrl, source, publishedAt } = article;
 
@@ -25,7 +21,6 @@ export function NewsCard({ article }: NewsCardProps) {
       {...cardMotion}
       className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
     >
-      {/* Image (16:9) with a graceful placeholder. */}
       <div className="relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- news images come from arbitrary external domains

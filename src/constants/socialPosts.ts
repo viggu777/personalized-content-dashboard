@@ -1,12 +1,5 @@
 import type { SocialPost } from "@/types";
 
-/**
- * Sample social posts.
- *
- * The app has no social API, so these seed the `content` slice and represent
- * the "social" source of the personalized feed (read back from Redux).
- * Dates are fixed (not generated) to keep the data deterministic.
- */
 export const SAMPLE_SOCIAL_POSTS: SocialPost[] = [
   {
     type: "social",

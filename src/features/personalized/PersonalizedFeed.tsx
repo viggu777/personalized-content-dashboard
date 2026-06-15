@@ -26,7 +26,6 @@ const GRID = "grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3";
 
 const keyOf = (item: FeedItem) => `${item.type}-${item.id}`;
 
-/** Round-robin merge so the feed alternates between sources. */
 function interleave(...lists: FeedItem[][]): FeedItem[] {
   const out: FeedItem[] = [];
   const max = Math.max(0, ...lists.map((l) => l.length));
@@ -38,7 +37,6 @@ function interleave(...lists: FeedItem[][]): FeedItem[] {
   return out;
 }
 
-/** Order `items` by the saved key order; unknown/new items keep natural order. */
 function applyOrder(items: FeedItem[], order: string[]): FeedItem[] {
   if (order.length === 0) return items;
   const byKey = new Map(items.map((i) => [keyOf(i), i] as const));
@@ -57,11 +55,6 @@ function applyOrder(items: FeedItem[], order: string[]): FeedItem[] {
   return ordered;
 }
 
-/**
- * Personalized feed: News + Movies (RTK Query) merged with Social Posts
- * (Redux). Cards are drag-and-drop reorderable (React DnD), the order persists
- * in Redux + localStorage, and reveal is paged via infinite scroll.
- */
 export function PersonalizedFeed() {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectSelectedCategories);
@@ -76,13 +69,11 @@ export function PersonalizedFeed() {
     [news.data, movies.data, socialPosts],
   );
 
-  // Display order = base feed re-ordered by the user's saved order.
   const displayItems = useMemo(
     () => applyOrder(items, savedOrder),
     [items, savedOrder],
   );
 
-  // Live reorder during drag — persisted to Redux (and localStorage) per swap.
   const moveCard = useCallback(
     (from: number, to: number) => {
       const next = displayItems.slice();
@@ -93,11 +84,9 @@ export function PersonalizedFeed() {
     [displayItems, dispatch],
   );
 
-  // React DnD's HTML5 backend touches the DOM, so only enable it after mount.
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Infinite scroll: reveal more items as the sentinel enters the viewport.
   const [visible, setVisible] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 

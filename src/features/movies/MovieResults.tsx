@@ -17,10 +17,6 @@ interface MovieResultsProps {
 const GRID =
   "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6";
 
-/**
- * Renders the loading / error / empty / success state for a movie list.
- * Shared by `TrendingMovies` and `MovieRecommendations`.
- */
 export function MovieResults({
   movies,
   isLoading,

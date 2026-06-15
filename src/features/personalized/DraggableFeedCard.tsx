@@ -7,7 +7,6 @@ import { RxDragHandleDots2 } from "react-icons/rx";
 
 import { FeedCard, type FeedItem } from "@/components/FeedCard";
 
-/** React DnD item type for feed cards. */
 export const FEED_CARD_TYPE = "FEED_CARD";
 
 interface DragItem {
@@ -17,15 +16,9 @@ interface DragItem {
 export interface DraggableFeedCardProps {
   item: FeedItem;
   index: number;
-  /** Live-reorder (called while hovering over another card). */
   moveCard: (from: number, to: number) => void;
 }
 
-/**
- * A feed card wrapped as a React DnD sortable item. Dragging happens via the
- * grip handle (so links/heart stay clickable); reordering is live, and the
- * layout transition animates the other cards smoothly.
- */
 export function DraggableFeedCard({
   item,
   index,
@@ -48,12 +41,10 @@ export function DraggableFeedCard({
       const hoverIndex = index;
       if (dragIndex === hoverIndex) return;
       moveCard(dragIndex, hoverIndex);
-      // Mutate the monitor item so subsequent hovers compare correctly.
       dragged.index = hoverIndex;
     },
   });
 
-  // The whole card is the drop target + drag preview; only the handle drags.
   preview(drop(ref));
   drag(handleRef);
 

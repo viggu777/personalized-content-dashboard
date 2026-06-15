@@ -3,14 +3,6 @@ import { NextResponse, type NextRequest } from "next/server";
 import { COMMUNITY_CATEGORIES } from "@/constants/community";
 import type { CommunityPost } from "@/types";
 
-/**
- * Server-side proxy for the Hacker News (Algolia) search API.
- *
- * Free, no auth, no app registration. Each category is a search query; results
- * are recent (last year) stories ranked by relevance/popularity. RTK Query
- * calls this route; this route calls Hacker News.
- */
-
 const HN_SEARCH = "https://hn.algolia.com/api/v1/search";
 const HN_ITEM = "https://news.ycombinator.com/item?id=";
 const WINDOW_DAYS = 365;
@@ -35,7 +27,6 @@ interface HnResponse {
   hits?: HnHit[];
 }
 
-/** Bare hostname of a URL (e.g. "github.com"), or undefined. */
 function hostname(url: string | null): string | undefined {
   if (!url) return undefined;
   try {
@@ -45,7 +36,6 @@ function hostname(url: string | null): string | undefined {
   }
 }
 
-/** Use the source site's favicon as a lightweight thumbnail. */
 function thumbnailFor(url: string | null): string | undefined {
   const host = hostname(url);
   return host

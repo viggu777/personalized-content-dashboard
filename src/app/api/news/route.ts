@@ -2,20 +2,12 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import type { NewsArticle } from "@/types";
 
-/**
- * Server-side proxy for NewsAPI (https://newsapi.org).
- *
- * Runs on the server so the API key stays secret and browser CORS limits are
- * avoided. RTK Query calls this route; this route calls NewsAPI.
- */
-
 const NEWS_API_URL = "https://newsapi.org/v2/top-headlines";
 
-/** Map our app categories to NewsAPI's supported categories. */
 const CATEGORY_MAP: Record<string, string> = {
   Technology: "technology",
   Sports: "sports",
-  Finance: "business", // NewsAPI has no "finance" category.
+  Finance: "business",
   Entertainment: "entertainment",
   Health: "health",
   Business: "business",
@@ -52,7 +44,6 @@ function normalize(article: NewsApiArticle, category: string): NewsArticle {
   };
 }
 
-/** Fetch top headlines for one app-category label (null = general). */
 async function fetchForLabel(
   label: string | null,
   apiKey: string,

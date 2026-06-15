@@ -8,7 +8,6 @@ export interface SpinnerProps {
   className?: string;
 }
 
-/** A smooth, continuously rotating loading spinner. */
 export function Spinner({ className }: SpinnerProps) {
   return (
     <motion.span

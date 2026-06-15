@@ -13,9 +13,6 @@ export interface MovieCardProps {
   movie: Movie;
 }
 
-/**
- * Presentational card for a single movie: poster, title, rating, release date.
- */
 export function MovieCard({ movie }: MovieCardProps) {
   const { title, posterUrl, rating, releaseDate } = movie;
 
@@ -24,7 +21,6 @@ export function MovieCard({ movie }: MovieCardProps) {
       {...cardMotion}
       className="group overflow-hidden rounded-xl border border-zinc-200 bg-white transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
     >
-      {/* Poster (2:3) with rating badge and placeholder. */}
       <div className="relative aspect-[2/3] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {posterUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- posters stream through our /api/movies/image proxy

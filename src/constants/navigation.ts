@@ -8,14 +8,12 @@ import {
   FiSettings,
 } from "react-icons/fi";
 
-/** A single sidebar navigation entry. */
 export interface NavItem {
   label: string;
   href: string;
   icon: IconType;
 }
 
-/** Primary sidebar navigation. */
 export const NAV_ITEMS: NavItem[] = [
   { label: "For You", href: "/", icon: FiZap },
   { label: "News", href: "/news", icon: FiRss },

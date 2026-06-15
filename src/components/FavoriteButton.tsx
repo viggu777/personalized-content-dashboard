@@ -13,14 +13,9 @@ import { cn } from "@/utils";
 
 export interface FavoriteButtonProps {
   item: ContentItem;
-  /** Extra classes for positioning/background (e.g. overlay on an image). */
   className?: string;
 }
 
-/**
- * Heart toggle for favoriting a content item. Reads its state from Redux and
- * dispatches add/remove; the persistence middleware mirrors it to localStorage.
- */
 export function FavoriteButton({ item, className }: FavoriteButtonProps) {
   const dispatch = useAppDispatch();
   const isFavorite = useAppSelector(
@@ -28,7 +23,6 @@ export function FavoriteButton({ item, className }: FavoriteButtonProps) {
   );
 
   const toggle = (event: React.MouseEvent) => {
-    // Don't trigger any underlying link/navigation.
     event.preventDefault();
     event.stopPropagation();
     if (isFavorite) {

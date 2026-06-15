@@ -12,10 +12,6 @@ import { useGetCommunityPostsQuery } from "./communityApi";
 
 const GRID = "grid grid-cols-1 gap-4 lg:grid-cols-2";
 
-/**
- * Community feed: pick a category, fetch its top Hacker News posts, and render the
- * loading / error / empty / success state.
- */
 export function CommunityFeed() {
   const [category, setCategory] = useState(COMMUNITY_CATEGORIES[0].label);
   const { data, isLoading, isFetching, isError, refetch } =
@@ -23,7 +19,6 @@ export function CommunityFeed() {
 
   return (
     <div className="space-y-5">
-      {/* Category tabs */}
       <div className="flex flex-wrap gap-2" role="tablist" aria-label="Community categories">
         {COMMUNITY_CATEGORIES.map((c) => {
           const active = c.label === category;
@@ -47,7 +42,6 @@ export function CommunityFeed() {
         })}
       </div>
 
-      {/* States */}
       {isLoading ? (
         <SkeletonGrid count={6} variant="post" className={GRID} />
       ) : isError ? (

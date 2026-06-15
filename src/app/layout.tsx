@@ -24,10 +24,6 @@ export const metadata: Metadata = {
   description: "Production-ready Next.js 15 application.",
 };
 
-/**
- * Applies the persisted theme before first paint to avoid a flash of the
- * wrong color scheme. Runs synchronously in <head>.
- */
 const themeScript = `
 (function () {
   try {

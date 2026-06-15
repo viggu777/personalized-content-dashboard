@@ -4,24 +4,14 @@ import { FiRefreshCw } from "react-icons/fi";
 import { cn } from "@/utils";
 
 export interface StatusMessageProps {
-  /** Leading icon (already sized, e.g. `h-10 w-10`). */
   icon: ReactNode;
   title?: string;
   description: ReactNode;
-  /** Optional call-to-action (e.g. a `<RetryButton />`). */
   action?: ReactNode;
-  /**
-   * `"error"` announces assertively via `role="alert"`; `"info"` (default) uses
-   * a polite `role="status"`. Empty states should use `"info"`.
-   */
   tone?: "error" | "info";
   className?: string;
 }
 
-/**
- * Centered, dashed-border status panel shared by every feed for their
- * error / empty states, so the whole app reads consistently.
- */
 export function StatusMessage({
   icon,
   title,
@@ -53,7 +43,6 @@ export interface RetryButtonProps {
   label?: string;
 }
 
-/** Primary "Retry" button used by error states. */
 export function RetryButton({ onClick, label = "Retry" }: RetryButtonProps) {
   return (
     <button

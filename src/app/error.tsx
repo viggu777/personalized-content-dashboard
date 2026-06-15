@@ -3,10 +3,6 @@
 import { useEffect } from "react";
 import { FiAlertTriangle, FiRefreshCw } from "react-icons/fi";
 
-/**
- * Route-segment error boundary. Next.js renders this when a page or its data
- * throws during rendering. `reset()` retries the segment.
- */
 export default function Error({
   error,
   reset,

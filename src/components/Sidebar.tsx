@@ -10,24 +10,15 @@ import { APP_NAME } from "@/constants";
 import { cn } from "@/utils";
 
 interface SidebarProps {
-  /** Whether the mobile drawer is open. */
   open: boolean;
-  /** Close the mobile drawer. */
   onClose: () => void;
 }
 
-/**
- * Left navigation sidebar.
- *
- * - Desktop (lg+): a fixed, always-visible column.
- * - Mobile: an off-canvas drawer with a backdrop, toggled via `open`.
- */
 export function Sidebar({ open, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
     <>
-      {/* Mobile backdrop */}
       <div
         aria-hidden={!open}
         onClick={onClose}
@@ -44,7 +35,6 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        {/* Brand */}
         <div className="flex h-16 items-center justify-between border-b border-zinc-200 px-6 dark:border-zinc-800">
           <Link href="/" className="flex items-center gap-2" onClick={onClose}>
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white">
@@ -64,7 +54,6 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           </button>
         </div>
 
-        {/* Navigation */}
         <nav
           aria-label="Primary"
           className="flex-1 space-y-1 overflow-y-auto px-3 py-4"
@@ -92,7 +81,6 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           })}
         </nav>
 
-        {/* Footer card */}
         <div className="border-t border-zinc-200 p-4 dark:border-zinc-800">
           <div className="rounded-xl bg-zinc-100 p-4 dark:bg-zinc-900">
             <p className="text-sm font-medium">Need help?</p>

@@ -8,13 +8,6 @@ import {
   useGetTrendingMoviesQuery,
 } from "./tmdbApi";
 
-/**
- * Real TMDB recommendations, seeded by the current top trending movie.
- *
- * Reuses the cached trending query (same arg → no extra request) to pick a
- * seed, then fetches TMDB's "recommendations" for it. Skipped until a seed is
- * available via `skipToken`.
- */
 export function MovieRecommendations() {
   const { data: trending } = useGetTrendingMoviesQuery();
   const seed = trending?.[0];
@@ -36,7 +29,6 @@ export function MovieRecommendations() {
       </h2>
       <MovieResults
         movies={data}
-        // Treat "still resolving the seed" as loading too.
         isLoading={!trending || isLoading}
         isError={isError}
         onRetry={refetch}

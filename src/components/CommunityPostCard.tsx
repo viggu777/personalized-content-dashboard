@@ -13,10 +13,6 @@ export interface CommunityPostCardProps {
   post: CommunityPost;
 }
 
-/**
- * Presentational card for a single community post: thumbnail, title, author,
- * upvotes, comment count, and an "Open Discussion" link to the thread.
- */
 export function CommunityPostCard({ post }: CommunityPostCardProps) {
   const {
     title,
@@ -33,7 +29,6 @@ export function CommunityPostCard({ post }: CommunityPostCardProps) {
       {...cardMotion}
       className="flex gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
     >
-      {/* Thumbnail with placeholder. */}
       <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800">
         {thumbnailUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- thumbnails come from external domains

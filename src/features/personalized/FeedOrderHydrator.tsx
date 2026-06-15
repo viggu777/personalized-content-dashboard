@@ -7,10 +7,6 @@ import { useAppDispatch } from "@/hooks";
 import { setFeedOrder } from "./feedOrderSlice";
 import { loadFeedOrder } from "./feedOrderStorage";
 
-/**
- * Restores the persisted feed order from localStorage into the store on mount.
- * Renders nothing; mounted once near the app root.
- */
 export function FeedOrderHydrator() {
   const dispatch = useAppDispatch();
 

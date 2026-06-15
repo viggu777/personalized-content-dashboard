@@ -3,7 +3,6 @@
 import { MovieResults } from "./MovieResults";
 import { useGetTrendingMoviesQuery } from "./tmdbApi";
 
-/** This year's top movies (rating ≥ 7) from TMDB Discover. */
 export function TrendingMovies() {
   const { data, isLoading, isError, refetch } = useGetTrendingMoviesQuery();
 

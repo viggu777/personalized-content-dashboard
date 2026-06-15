@@ -14,11 +14,9 @@ const GRID = "grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3";
 const linkClass =
   "font-medium text-indigo-600 hover:underline dark:text-indigo-400";
 
-/** Renders all favorited items, or an empty state. */
 export function FavoritesList() {
   const favorites = useAppSelector(selectFavorites);
 
-  // FeedCard renders news / movie / social / community (everything favoritable).
   const items = favorites.filter(
     (item): item is FeedItem => item.type !== "recommendation",
   );

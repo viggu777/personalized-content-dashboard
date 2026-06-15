@@ -8,12 +8,6 @@ import { cn } from "@/utils";
 
 import { saveCategories, selectSelectedCategories } from "./preferencesSlice";
 
-/**
- * Tag/checkbox grid for choosing content categories.
- *
- * Selections are written straight to Redux (`saveCategories`); the persistence
- * middleware mirrors them to localStorage, so nothing else is needed here.
- */
 export function CategorySelector() {
   const dispatch = useAppDispatch();
   const selected = useAppSelector(selectSelectedCategories);

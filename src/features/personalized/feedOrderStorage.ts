@@ -1,10 +1,5 @@
-/**
- * localStorage read/write helpers for the feed order. SSR- and error-guarded.
- */
-
 const FEED_ORDER_STORAGE_KEY = "feedOrder";
 
-/** Read the persisted feed order (array of item keys). */
 export function loadFeedOrder(): string[] {
   if (typeof window === "undefined") return [];
   try {
@@ -18,12 +13,10 @@ export function loadFeedOrder(): string[] {
   }
 }
 
-/** Persist the feed order. */
 export function persistFeedOrder(order: string[]): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(FEED_ORDER_STORAGE_KEY, JSON.stringify(order));
   } catch {
-    // Ignore storage errors.
   }
 }

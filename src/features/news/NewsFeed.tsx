@@ -11,10 +11,6 @@ import { useGetNewsQuery } from "./newsApi";
 
 const GRID = "grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3";
 
-/**
- * Fetches news for the user's selected categories and renders the appropriate
- * loading / error / empty / success state.
- */
 export function NewsFeed() {
   const categories = useAppSelector(selectSelectedCategories);
   const { data, isLoading, isFetching, isError, refetch } =

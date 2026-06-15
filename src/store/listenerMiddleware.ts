@@ -22,7 +22,6 @@ export const listenerMiddleware = createListenerMiddleware();
 type AppStartListening = TypedStartListening<RootState, AppDispatch>;
 const startAppListening = listenerMiddleware.startListening as AppStartListening;
 
-// Persist selected categories to localStorage whenever they change.
 startAppListening({
   actionCreator: saveCategories,
   effect: (_action, listenerApi) => {
@@ -31,7 +30,6 @@ startAppListening({
   },
 });
 
-// Persist favorites to localStorage whenever they change.
 startAppListening({
   matcher: isAnyOf(addFavorite, removeFavorite, setFavorites),
   effect: (_action, listenerApi) => {
@@ -39,7 +37,6 @@ startAppListening({
   },
 });
 
-// Persist the custom feed order to localStorage whenever it changes.
 startAppListening({
   actionCreator: setFeedOrder,
   effect: (_action, listenerApi) => {

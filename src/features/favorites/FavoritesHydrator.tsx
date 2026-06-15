@@ -7,10 +7,6 @@ import { useAppDispatch } from "@/hooks";
 import { setFavorites } from "./favoritesSlice";
 import { loadFavorites } from "./favoritesStorage";
 
-/**
- * Restores persisted favorites from localStorage into the store on mount.
- * Renders nothing; mounted once near the app root.
- */
 export function FavoritesHydrator() {
   const dispatch = useAppDispatch();
 

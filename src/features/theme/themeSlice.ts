@@ -14,11 +14,9 @@ const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    /** Flip between light and dark. */
     toggleTheme(state) {
       state.darkMode = !state.darkMode;
     },
-    /** Set dark mode explicitly (e.g. to hydrate from a persisted value). */
     setDarkMode(state, action: PayloadAction<boolean>) {
       state.darkMode = action.payload;
     },
@@ -27,7 +25,6 @@ const themeSlice = createSlice({
 
 export const { toggleTheme, setDarkMode } = themeSlice.actions;
 
-// Selectors
 export const selectDarkMode = (state: RootState) => state.theme.darkMode;
 
 export default themeSlice.reducer;

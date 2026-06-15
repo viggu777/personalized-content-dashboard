@@ -5,7 +5,6 @@ import type { ApiError } from "@/types";
 
 import { axiosInstance } from "./axiosInstance";
 
-/** Arguments accepted by the axios base query. */
 export interface AxiosBaseQueryArgs {
   url: string;
   method?: AxiosRequestConfig["method"];
@@ -14,12 +13,6 @@ export interface AxiosBaseQueryArgs {
   headers?: AxiosRequestConfig["headers"];
 }
 
-/**
- * A RTK Query `baseQuery` implementation backed by our shared Axios instance.
- *
- * This lets every RTK Query endpoint reuse the same interceptors, base URL,
- * and timeout configuration as imperative Axios calls.
- */
 export const axiosBaseQuery =
   (): BaseQueryFn<AxiosBaseQueryArgs, unknown, ApiError> =>
   async ({ url, method = "GET", data, params, headers }) => {

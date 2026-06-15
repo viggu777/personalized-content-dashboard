@@ -1,6 +1,5 @@
 import { cn } from "@/utils";
 
-/** A single pulsing placeholder block. */
 export function Skeleton({ className }: { className?: string }) {
   return (
     <div
@@ -13,7 +12,6 @@ export function Skeleton({ className }: { className?: string }) {
   );
 }
 
-/** Card skeleton shape, matching each list's real card layout. */
 export type CardSkeletonVariant = "feed" | "poster" | "post";
 
 const CARD_SHELL =
@@ -49,7 +47,6 @@ export function CardSkeleton({
     );
   }
 
-  // "feed" (also used for news).
   return (
     <div className={CARD_SHELL}>
       <Skeleton className="aspect-video" />
@@ -62,7 +59,6 @@ export function CardSkeleton({
   );
 }
 
-/** A grid of card skeletons. `className` sets the grid layout. */
 export function SkeletonGrid({
   count,
   variant = "feed",

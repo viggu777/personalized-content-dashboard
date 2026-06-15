@@ -2,7 +2,6 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { fetchMovieRecommendations, hasTmdbCredentials } from "../tmdb";
 
-/** GET /api/movies/recommendations?movieId=123 — TMDB recommendations for a movie. */
 export async function GET(request: NextRequest) {
   if (!hasTmdbCredentials()) {
     return NextResponse.json(

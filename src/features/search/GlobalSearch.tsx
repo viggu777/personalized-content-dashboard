@@ -13,7 +13,6 @@ import { selectSelectedCategories } from "@/features/preferences/preferencesSlic
 import { useAppSelector, useDebounce } from "@/hooks";
 import type { Movie, NewsArticle, SocialPost } from "@/types";
 
-/** Max results shown in the dropdown (across all sources). */
 const MAX_RESULTS = 8;
 
 type SearchResult =
@@ -21,12 +20,6 @@ type SearchResult =
   | { kind: "movie"; item: Movie }
   | { kind: "social"; item: SocialPost };
 
-/**
- * Relevance score for a candidate. Higher = better match, so the item the
- * user actually searched for surfaces first:
- *   4 exact title · 3 title starts-with · 2 title word-boundary ·
- *   1 title substring · +0.5 if a secondary field also matches · 0 no match.
- */
 function relevance(primary: string, secondary: string, term: string): number {
   const title = primary.toLowerCase();
   let score = 0;
@@ -45,11 +38,6 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/**
- * Global search across News (RTK Query), Movies (RTK Query), and Social Posts
- * (Redux), debounced by 500ms. Results are ranked by relevance so the closest
- * match shows first, regardless of source.
- */
 export function GlobalSearch() {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -60,7 +48,6 @@ export function GlobalSearch() {
   const term = debounced.trim().toLowerCase();
   const hasQuery = term.length > 0;
 
-  // Only fetch once the user has actually searched (reuses cache if warm).
   const categories = useAppSelector(selectSelectedCategories);
   const news = useGetNewsQuery(hasQuery ? categories : skipToken);
   const movies = useGetTrendingMoviesQuery(hasQuery ? undefined : skipToken);
@@ -92,7 +79,6 @@ export function GlobalSearch() {
       if (score > 0) scored.push({ result: { kind: "social", item }, score });
     }
 
-    // Stable sort by descending relevance (best match first).
     return scored
       .map((entry, index) => ({ ...entry, index }))
       .sort((a, b) => b.score - a.score || a.index - b.index)
@@ -102,7 +88,6 @@ export function GlobalSearch() {
 
   const isLoading = hasQuery && (news.isLoading || movies.isLoading);
 
-  // Close the dropdown when clicking outside.
   useEffect(() => {
     function onDocMouseDown(event: MouseEvent) {
       if (
